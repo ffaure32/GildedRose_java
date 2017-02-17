@@ -13,20 +13,15 @@ public class BackstagePassItemUpdater extends DefaultItemUpdater {
 
 	@Override
 	public void updateQuality() {
-		if (item.getQuality() < 50) {
-			item.setQuality(item.getQuality() + 1);
-
-			if (item.getSellIn() < 11) {
-				if (item.getQuality() < 50) {
-					item.setQuality(item.getQuality() + 1);
-				}
-			}
-
-			if (item.getSellIn() < 6) {
-				if (item.getQuality() < 50) {
-					item.setQuality(item.getQuality() + 1);
-				}
-			}
+		if (item.getSellIn() <= 5) {
+			raiseQualityIfMaxNotReached();
+			raiseQualityIfMaxNotReached();
+			raiseQualityIfMaxNotReached();
+		} else if(item.getSellIn() <= 10) {
+			raiseQualityIfMaxNotReached();
+			raiseQualityIfMaxNotReached();
+		} else {
+			raiseQualityIfMaxNotReached();
 		}
 	}
 }

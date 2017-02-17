@@ -8,15 +8,11 @@ public class AgedBrieItemUpdater extends DefaultItemUpdater {
 
 	@Override
 	public void updateQualityAfterSellin() {
-		if (item.getQuality() < 50) {
-			item.setQuality(item.getQuality() + 1);
-		}
+		raiseQualityIfMaxNotReached();
 	}
 
 	@Override
 	public void updateQuality() {
-		if (item.getQuality() < 50) {
-			item.setQuality(item.getQuality() + 1);
-		}
+		raiseQualityIfMaxNotReached();
 	}
 }

@@ -10,9 +10,7 @@ public class DefaultItemUpdater implements ItemUpdater {
 
 	@Override
 	public void updateQuality() {
-		if (item.getQuality() > 0) {
-			item.setQuality(item.getQuality() - 1);
-		}
+		decreaseQualityIfPositive();
 	}
 
 	@Override
@@ -22,10 +20,23 @@ public class DefaultItemUpdater implements ItemUpdater {
 
 	@Override
 	public void updateQualityAfterSellin() {
+		decreaseQualityIfPositive();
+	}
+
+	protected void decreaseQualityIfPositive() {
 		if (item.getQuality() > 0) {
 			item.setQuality(item.getQuality() - 1);
 		}
 	}
+	
+	protected void raiseQualityIfMaxNotReached() {
+		if (item.getQuality() < 50) {
+			item.setQuality(item.getQuality() + 1);
+		}
+	}
+
+
+
 	
 	
 }

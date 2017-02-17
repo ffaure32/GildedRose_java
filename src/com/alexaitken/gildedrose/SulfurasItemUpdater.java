@@ -16,5 +16,5 @@ public class SulfurasItemUpdater extends DefaultItemUpdater {
 
 	@Override
 	public void updateQualityAfterSellin() {
-	}
+ 	}
 }

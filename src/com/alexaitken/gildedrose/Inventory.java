@@ -25,53 +25,63 @@ public class Inventory {
 
 	public void updateQuality() {
 		for (Item item : items) {
+			updateQuality(item);
+			updateSellIn(item);
+			updateQualityAfterSellin(item);
+		}
+	}
+
+	private void updateQualityAfterSellin(Item item) {
+		if (item.getSellIn() < 0) {
 			if (item.getName() == AGED_BRIE) {
 				if (item.getQuality() < 50) {
 					item.setQuality(item.getQuality() + 1);
 				}
 			} else if (item.getName() == BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT) {
-				if (item.getQuality() < 50) {
-					item.setQuality(item.getQuality() + 1);
-
-					if (item.getSellIn() < 11) {
-						if (item.getQuality() < 50) {
-							item.setQuality(item.getQuality() + 1);
-						}
-					}
-
-					if (item.getSellIn() < 6) {
-						if (item.getQuality() < 50) {
-							item.setQuality(item.getQuality() + 1);
-						}
-					}
-				}
+				item.setQuality(item.getQuality() - item.getQuality());
 			} else if (item.getName() == SULFURAS_HAND_OF_RAGNAROS) {
-
 			} else {
 				if (item.getQuality() > 0) {
 					item.setQuality(item.getQuality() - 1);
 				}
-			}
 
-			if (item.getName() == SULFURAS_HAND_OF_RAGNAROS) {
-			} else {
-				item.setSellIn(item.getSellIn() - 1);
 			}
+		}
+	}
 
-			if (item.getSellIn() < 0) {
-				if (item.getName() == AGED_BRIE) {
+	private void updateSellIn(Item item) {
+		if (item.getName() == SULFURAS_HAND_OF_RAGNAROS) {
+		} else {
+			item.setSellIn(item.getSellIn() - 1);
+		}
+	}
+
+	private void updateQuality(Item item) {
+		if (item.getName() == AGED_BRIE) {
+			if (item.getQuality() < 50) {
+				item.setQuality(item.getQuality() + 1);
+			}
+		} else if (item.getName() == BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT) {
+			if (item.getQuality() < 50) {
+				item.setQuality(item.getQuality() + 1);
+
+				if (item.getSellIn() < 11) {
 					if (item.getQuality() < 50) {
 						item.setQuality(item.getQuality() + 1);
 					}
-				} else if (item.getName() == BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT) {
-					item.setQuality(item.getQuality() - item.getQuality());
-				} else if (item.getName() == SULFURAS_HAND_OF_RAGNAROS) {
-				} else {
-					if (item.getQuality() > 0) {
-						item.setQuality(item.getQuality() - 1);
-					}
-
 				}
+
+				if (item.getSellIn() < 6) {
+					if (item.getQuality() < 50) {
+						item.setQuality(item.getQuality() + 1);
+					}
+				}
+			}
+		} else if (item.getName() == SULFURAS_HAND_OF_RAGNAROS) {
+
+		} else {
+			if (item.getQuality() > 0) {
+				item.setQuality(item.getQuality() - 1);
 			}
 		}
 	}

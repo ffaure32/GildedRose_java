@@ -2,6 +2,9 @@ package com.alexaitken.gildedrose;
 
 public class BackstagePassItemUpdater extends DefaultItemUpdater {
 
+	private static final int DAY_LIMIT_TO_DOUBLE_RAISE = 10;
+	private static final int DAY_LIMIT_TO_TRIPLE_RAISE = 5;
+
 	public BackstagePassItemUpdater(Item item) {
 		super(item);
 	}
@@ -13,11 +16,11 @@ public class BackstagePassItemUpdater extends DefaultItemUpdater {
 
 	@Override
 	public void updateQuality() {
-		if (item.getSellIn() <= 5) {
+		if (item.getSellIn() <= DAY_LIMIT_TO_TRIPLE_RAISE) {
 			raiseQualityIfMaxNotReached();
 			raiseQualityIfMaxNotReached();
 			raiseQualityIfMaxNotReached();
-		} else if(item.getSellIn() <= 10) {
+		} else if(item.getSellIn() <= DAY_LIMIT_TO_DOUBLE_RAISE) {
 			raiseQualityIfMaxNotReached();
 			raiseQualityIfMaxNotReached();
 		} else {

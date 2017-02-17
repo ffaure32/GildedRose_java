@@ -1,6 +1,8 @@
 package com.alexaitken.gildedrose;
 
 public class DefaultItemUpdater implements ItemUpdater {
+	private static final int MIN_QUALITY = 0;
+	protected static final int MAX_QUALITY = 50;
 	protected Item item;
 
 	public DefaultItemUpdater(Item item) {
@@ -24,13 +26,13 @@ public class DefaultItemUpdater implements ItemUpdater {
 	}
 
 	protected void decreaseQualityIfPositive() {
-		if (item.getQuality() > 0) {
+		if (item.getQuality() > MIN_QUALITY) {
 			item.setQuality(item.getQuality() - 1);
 		}
 	}
 	
 	protected void raiseQualityIfMaxNotReached() {
-		if (item.getQuality() < 50) {
+		if (item.getQuality() < MAX_QUALITY) {
 			item.setQuality(item.getQuality() + 1);
 		}
 	}

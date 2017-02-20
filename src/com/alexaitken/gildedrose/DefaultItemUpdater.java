@@ -26,15 +26,11 @@ public class DefaultItemUpdater implements ItemUpdater {
 	}
 
 	protected void decreaseQualityIfPositive() {
-		if (item.getQuality() > MIN_QUALITY) {
-			item.setQuality(item.getQuality() - 1);
-		}
+		item.setQuality(Math.max(MIN_QUALITY, item.getQuality()-1));
 	}
 	
 	protected void raiseQualityIfMaxNotReached() {
-		if (item.getQuality() < MAX_QUALITY) {
-			item.setQuality(item.getQuality() + 1);
-		}
+		item.setQuality(Math.min(MAX_QUALITY, item.getQuality()+1));
 	}
 
 
